@@ -21,7 +21,7 @@ router.get('/users/signup', (req, res) => {
     })
 })
 
-// ? loggin in users
+// ? logging in users
 router.post('/users/login', async (req, res) => {
 
     try {
