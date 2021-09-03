@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
         title: "Home"
     })
 })
+
 // use routers
 app.use(userRoutes)
 app.use(taskRoutes)
@@ -38,15 +39,3 @@ app.use(taskRoutes)
 app.listen(port , () => {
     console.log("Server is up!")
 })
-
-// const jwt = require('jsonwebtoken')
-
-// const myFunc = async () => {
-//     const token = jwt.sign({ _id: "abc123" }, "thisisanodeproj", { expiresIn: "7 days" })
-//     console.log(token)
-
-//     const data = jwt.verify(token, "thisisanodeproj")
-//     console.log(data)
-// }
-
-// myFunc()
