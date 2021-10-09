@@ -30,6 +30,27 @@ app.get('/', (req, res) => {
     })
 })
 
+const multer = require('multer')
+const upload = multer({
+    dest: 'images',
+    limits: {
+        fileSize: 5_000_000,
+    },
+    fileFilter(req, file, callback) {
+
+        if( !file.originalname.match(/\.(doc|docx)$/) ) {
+            callback(new Error('Please upload a docx!'))
+        }
+
+        callback(undefined, true)
+    }
+})
+
+app.post('/upload', upload.single('upload'), (req, res) => {
+    res.send()
+})
+
+
 // use routers
 app.use(userRoutes)
 app.use(taskRoutes)
