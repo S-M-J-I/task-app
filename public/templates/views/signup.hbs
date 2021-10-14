@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-</head>
+{{>headers}}
 <body>
-    <form action="/users/signup" method="post">
-        <label for="name">Enter full name</label>
-        <input type="text" name="name">
-        <label for="age">Enter age</label>
-        <input type="number" name="age">
-        <label for="email">Enter email</label>
-        <input type="text" name="email">
-        <label for="password">Enter password</label>
-        <input type="password" name="password">
-        <button type="submit">Sign Up</button>
-    </form>
+    {{>navbar}}
+    <h2 class="is-size-1 is-family-sans-serif has-text-weight-bold	has-text-centered">Sign Up</h2><br>
+    <div class="columns is-centered">
+        <div class="is-half">
+            <form action="/users/signup" method="post">
+                <div class="field">
+                    <label class="label" for="name">Enter name</label>
+                    <input type="text" class="input" name="name" placeholder="John Doe">
+                </div>
+                <div class="field">
+                    <label class="label" for="email">Enter email</label>
+                    <input class="input" type="text" name="email" placeholder="johndoe@gmail.com">
+                </div>
+                <div class="field">
+                    <label class="label" for="password">Enter password</label>
+                    <input class="input" type="password" name="password" placeholder="At least 8 characters.">
+                </div>
+                <div class="field">
+                    <label for="age" class="label">Enter age</label>
+                    <input type="text" class="input" placeholder="Must be 16 or older">
+                </div>
+                <button type="submit" class="button is-link is-outlined is-centered is-fullwidth">Sign Up</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

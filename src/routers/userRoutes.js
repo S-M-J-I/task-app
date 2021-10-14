@@ -12,7 +12,12 @@ router.post('/users/signup', async (req, res) => {
     try {
         await user.save()
         const token = await user.generateAuthToken()
-        res.status(201).send({user, token})
+
+        res.cookie('Authorization', `Bearer ${token}`, {
+            maxAge: 600000,
+        })
+
+        res.status(201).redirect('/users/me')
     } catch (err) {
         res.status(400).send(err)
     }
@@ -31,9 +36,15 @@ router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         const token = await user.generateAuthToken()
-        res.send({user,token})
+
+    
+        res.cookie('Authorization', `Bearer ${token}`, {
+            maxAge: 600000,
+        })
+
+        res.status(201).redirect('/users/me')
     } catch (err) {
-        res.status(400).send()
+        res.status(400).send({err: err.message})
     }
 
 })

@@ -4,8 +4,6 @@ A simple task app in NodeJS
 
 ## Features
 
----
-
 - Login-Signup
 - Avatar uploading
 - Task creation and deletion
@@ -13,13 +11,12 @@ A simple task app in NodeJS
 
 ## Tools Used
 
----
-
 - [Express](https://www.npmjs.com/package/express)
 - [HBS](https://www.npmjs.com/package/hbs)
 - [Multer](https://www.npmjs.com/package/multer)
 - [BcryptJS](https://www.npmjs.com/package/bcryptjs)
 - [Json Web Token](https://www.npmjs.com/package/jsonwebtoken)
 - [Validator](https://www.npmjs.com/package/validator)
+- [Sharp](https://www.npmjs.com/package/sharp)
 - MongoDB
 - MongooseJS

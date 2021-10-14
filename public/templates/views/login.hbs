@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-</head>
+{{>headers}}
+
 <body>
-    <form action="/users/login" method="post">
-        <label for="email">Enter email</label>
-        <input type="text" name="email">
-        <label for="password">Enter password</label>
-        <input type="password" name="password">
-        <button type="submit">Login</button>
-    </form>
-    
+    {{>navbar}}
+    <h2 class="is-size-1 is-family-sans-serif has-text-weight-bold	has-text-centered">Login</h2><br>
+    <div class="columns is-mobile is-centered">
+        <div class="is-half">
+            <form action="/users/login" method="post">
+                <div class="field">
+                    <label class="label" for="email">Enter email</label>
+                    <input class="input" type="text" name="email" placeholder="johndoe@gmail.com">
+                </div>
+                <div class="field">
+                    <label class="label" for="password">Enter password</label>
+                    <input class="input" type="password" name="password" placeholder="At least 8 characters.">
+                </div>
+                <button type="submit" class="button is-link is-outlined is-centered is-fullwidth">Login</button>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>

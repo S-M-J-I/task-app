@@ -6,10 +6,18 @@ const path = require('path')
 const hbs = require('hbs')
 const app = express()
 const port = process.env.PORT || 3000
+const cookieParser = require('cookie-parser')
+const compression = require('compression')
+const helmet = require('helmet')
+const methodOverride = require('method-override')
 
 // converts all body responses to json responses
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(cookieParser())
+app.use(helmet())
+app.use(compression())
+app.use(methodOverride('_method'))
 
 //define path dirs
 const publicDir = path.join(__dirname, '../public');
@@ -27,6 +35,12 @@ hbs.registerPartials(partialsDir);
 app.get('/', (req, res) => {
     res.render('home', {
         title: "Home"
+    })
+})
+
+app.get('/about', (req, res) => {
+    res.render('about', {
+        title: 'About'
     })
 })
 
