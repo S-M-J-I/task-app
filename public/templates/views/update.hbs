@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>headers}}
+<body>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <form action="/users/me" method="GET">
+                            <button class="button is-link" type="submit">Dashboard</button>
+                        </form>
+                        <form action="/users/logoutAll" method="POST">
+                            <button class="button is-light" type="submit">Log Out</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h2 class="is-size-1 is-family-sans-serif has-text-weight-bold	has-text-centered">Update user information</h2><br>
+    <div class="columns is-centered">
+        <div class="is-half">
+            <form action="/users/me?_method=PATCH" method="POST">
+                <div class="field">
+                    <label class="label" for="name">Enter name</label>
+                    <input type="text" class="input" name="name" value="{{user.name}}" readonly>
+                </div>
+                <div class="field">
+                    <label class="label" for="email">Enter email</label>
+                    <input class="input" type="text" name="email" value="{{user.email}}">
+                </div>
+                <div class="field">
+                    <label class="label" for="password">Enter password</label>
+                    <input class="input" type="password" name="password" placeholder="At least 8 characters.">
+                </div>
+                <div class="field">
+                    <label for="age" class="label">Enter age</label>
+                    <input type="text" class="input" value="{{user.age}}" readonly>
+                </div>
+                <button type="submit" class="button is-link is-outlined is-centered is-fullwidth">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

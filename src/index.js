@@ -48,6 +48,13 @@ app.get('/about', (req, res) => {
 app.use(userRoutes)
 app.use(taskRoutes)
 
+app.use('*', (req, res) => {
+    res.status(404).render('error', {
+        title: 'Error 404',
+        err: 'Page Not Found'
+    })
+})
+
 
 // TODO: Remeber to remove the mongo connection path from mongoose header
 app.listen(port , () => {

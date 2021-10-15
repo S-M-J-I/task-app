@@ -19,7 +19,10 @@ router.post('/users/signup', async (req, res) => {
 
         res.status(201).redirect('/users/me')
     } catch (err) {
-        res.status(400).send(err)
+        res.status(400).render('error', {
+            title: `Error 400`,
+            err: err.message
+        })
     }
 
 })
@@ -44,7 +47,10 @@ router.post('/users/login', async (req, res) => {
 
         res.status(201).redirect('/users/me')
     } catch (err) {
-        res.status(400).send({err: err.message})
+        res.status(400).render('error', {
+            title: `Error 400`,
+            err: err.message
+        })
     }
 
 })
@@ -65,7 +71,10 @@ router.post('/users/logout', auth, async (req, res) => {
     
         res.status(200).send()
     } catch (err) {
-        res.status(500).send(err)
+        res.status(500).render('error', {
+            title: `Error 500`,
+            err: err.message
+        })
     }
 }, (error, req, res, next) => {
     res.send({error: error.message})
@@ -78,10 +87,11 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     
         res.status(200).redirect('/users/login')
     } catch (err) {
-        res.status(500).send(err)
+        res.status(500).render('error', {
+            title: `Error 500`,
+            err: err.message
+        })
     }
-}, (error, req, res, next) => {
-    res.send({error: error.message})
 })
 
 
@@ -95,9 +105,10 @@ router.get('/users/me', auth, async (req, res) => {
     res.send({error: error.message})
 })
 
-router.patch('/users/me/update', auth, (req, res) => {
+router.get('/users/me/update', auth, (req, res) => {
     res.status(200).render('update', {
-        title: 'Update'
+        title: 'Update',
+        user: req.user
     })
 })
 
@@ -121,7 +132,7 @@ router.patch('/users/me', auth, async (req, res) => {
         })
         
         await req.user.save()
-        res.status(201).send(req.user)
+        res.status(201).redirect('/users/me')
 
     } catch (err) {
         res.status(500).send(err)
