@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
+{{>headers}}
 <body>
-    <h1>Name: {{user.name}}</h1>
-    <h1>Email: {{user.email}}</h1>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <form action="/users/me/update" method="GET">
+                            <button class="button is-link" type="submit">Update</button>
+                        </form>
+                        <form action="/users/logoutAll" method="POST">
+                            <button class="button is-light" type="submit">Log Out</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="column">
+        <h1 class="is-size-1 is-family-sans-serif has-text-weight-bold">{{user.name}}</h1>
+    </div>
 </body>
+
 </html>

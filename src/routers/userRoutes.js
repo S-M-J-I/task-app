@@ -76,7 +76,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
         req.user.tokens = []
         await req.user.save()
     
-        res.status(200).send()
+        res.status(200).redirect('/users/login')
     } catch (err) {
         res.status(500).send(err)
     }
@@ -87,11 +87,19 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 
 // ? get user
 router.get('/users/me', auth, async (req, res) => {
-    res.send(req.user)
+    res.status(200).render('me', {
+        title: 'Dashboard',
+        user: req.user
+    })
 }, (error, req, res, next) => {
     res.send({error: error.message})
 })
 
+router.patch('/users/me/update', auth, (req, res) => {
+    res.status(200).render('update', {
+        title: 'Update'
+    })
+})
 
 // ? update user by id
 router.patch('/users/me', auth, async (req, res) => {
