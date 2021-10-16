@@ -20,3 +20,4 @@ A simple task app in NodeJS
 - [Sharp](https://www.npmjs.com/package/sharp)
 - MongoDB
 - MongooseJS
+- Bulma
