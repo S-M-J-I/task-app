@@ -99,7 +99,8 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 router.get('/users/me', auth, async (req, res) => {
     res.status(200).render('me', {
         title: 'Dashboard',
-        user: req.user
+        user: req.user,
+        id: req.user._id.toString()
     })
 }, (error, req, res, next) => {
     res.send({error: error.message})
@@ -141,10 +142,16 @@ router.patch('/users/me', auth, async (req, res) => {
     res.send({error: error.message})
 })
 
+router.get('/users/me/delete', auth, async (req, res) => {
+    res.render('delete', {
+        title: 'Delete Account'
+    })
+})
+
 router.delete('/users/me', auth, async (req, res) => {
     try {
         await req.user.remove()
-        res.status(200).send(req.user)
+        res.status(200).redirect('/users/login')
     } catch (err) {
         res.status(500).send({err: err.message})
     }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>headers}}
+<body>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                    <figure class="image is-64x64" style="margin-left: 10px; margin-top: 10px; margin-bottom: 10px;">
+                        <img class="is-rounded" src="/users/{{id}}/avatar" alt="user-avatar">
+                    </figure>
+                <div class="navbar-item">
+                    <a href="/users/me"><h4 class="is-family-sans-serif is-size-3">{{user.name}}</h4></a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <form action="/users/logoutAll" method="POST">
+                            <button class="button is-link is-outlined" type="submit">Log Out</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{#each tasks}}
+    <div class="column box container is-max-desktop" style="padding: 20px;">
+        <h1>{{this.description}}</h1>
+        <h1>{{this.completed}}</h1>
+    </div>
+    {{/each}}
+</body>
+
+</html>

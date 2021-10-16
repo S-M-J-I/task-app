@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>headers}}
+<body>
+    <div class="column" style="text-align: center; justify-content: center;">
+        <h1 class="is-size-1">Are you sure you want to delete your account?</h1>
+        <div class="buttons" style="display: flex; justify-content: center; align-items: center; margin: 10px;">
+            <form method="POST" action="/users/me/?_method=DELETE" style="margin: 10px;">
+                <button type="submit" class="button is-danger">Yes</button>
+            </form>
+            <form method="GET" action="/users/me" style="margin: 10px;">
+                <button type="submit" class="button is-link">No, Go Back!</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

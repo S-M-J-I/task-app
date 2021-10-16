@@ -46,7 +46,12 @@ router.get('/tasks', auth, async (req, res) => {
                 sort
             }
         }).execPopulate()
-        res.status(200).send(req.user.tasks) 
+        res.status(200).render('main', {
+            title: 'Tasks',
+            user: req.user,
+            id: req.user._id.toString(),
+            tasks: req.user.tasks
+        }) 
     } catch (err) {
         res.status(500).send(err)
     }

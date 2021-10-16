@@ -7,21 +7,35 @@
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
                 <div class="navbar-item">
+                    <div class="navbar-item">
+                        <a href="/tasks">My Tasks</a>
+                    </div>
                     <div class="buttons">
-                        <form action="/users/me/update" method="GET">
-                            <button class="button is-link" type="submit">Update</button>
-                        </form>
                         <form action="/users/logoutAll" method="POST">
-                            <button class="button is-light" type="submit">Log Out</button>
+                            <button class="button is-link is-outlined" type="submit">Log Out</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-    <div class="column">
+    <div class="column" style="text-align: center; justify-content: center;">
+        <img class="is-rounded" src="/users/{{id}}/avatar">
         <h1 class="is-size-1 is-family-sans-serif has-text-weight-bold">{{user.name}}</h1>
+        <h3 class="is-size-3 is-family-sans-serif">{{user.email}}</h3>
+
+        {{!-- Buttons --}}
+        <div class="buttons" style="display: flex; justify-content: center; align-items: center; margin: 10px;">
+            <form action="/users/me/update" method="GET" style="margin: 10px;">
+                <button class="button is-link" type="submit">Update</button>
+            </form>
+            <form action="/users/me/delete" method="GET" style="margin: 10px;">
+                <button class="button is-danger" type="submit">Delete my account</button>
+            </form>
+        </div>
+        
     </div>
+    
 </body>
 
 </html>

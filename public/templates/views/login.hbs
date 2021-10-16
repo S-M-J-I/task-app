@@ -4,22 +4,25 @@
 
 <body>
     {{>navbar}}
-    <h2 class="is-size-1 is-family-sans-serif has-text-weight-bold	has-text-centered">Login</h2><br>
-    <div class="columns is-mobile is-centered">
-        <div class="is-half">
-            <form action="/users/login" method="post">
-                <div class="field">
-                    <label class="label" for="email">Enter email</label>
-                    <input class="input" type="text" name="email" placeholder="johndoe@gmail.com">
-                </div>
-                <div class="field">
-                    <label class="label" for="password">Enter password</label>
-                    <input class="input" type="password" name="password" placeholder="At least 8 characters.">
-                </div>
-                <button type="submit" class="button is-link is-outlined is-centered is-fullwidth">Login</button>
-            </form>
+    <div class="container is-max-desktop">
+        <h2 class="is-size-1 is-family-sans-serif has-text-weight-bold	has-text-centered">Login</h2><br>
+        <div class="columns is-centered">
+            <div>
+                <form action="/users/login" method="post">
+                    <div class="field">
+                        <label class="label" for="email">Enter email</label>
+                        <input class="input" type="text" name="email" placeholder="johndoe@gmail.com">
+                    </div>
+                    <div class="field">
+                        <label class="label" for="password">Enter password</label>
+                        <input class="input" type="password" name="password" placeholder="At least 8 characters.">
+                    </div>
+                    <button type="submit" class="button is-link is-outlined is-centered is-fullwidth">Login</button>
+                </form>
+            </div>
         </div>
     </div>
+
 </body>
 
 </html>
