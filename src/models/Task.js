@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema({
+    idString: {
+        type: String,
+        trim: true,
+    },
     description: {
         type: String,
-        trime: true,
+        trim: true,
         required: true,
     },
     completed: {
@@ -17,6 +21,14 @@ const taskSchema = mongoose.Schema({
     }
 }, {
     timestamps: true
+})
+
+taskSchema.pre('save', async function (next) {
+    const task = this
+
+    task.idString = task._id.toString()
+
+    next()
 })
 
 const Task = mongoose.model('Task', taskSchema)

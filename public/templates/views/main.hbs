@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 {{>headers}}
+
 <body>
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                    <figure class="image is-64x64" style="margin-left: 10px; margin-top: 10px; margin-bottom: 10px;">
-                        <img class="is-rounded" src="/users/{{id}}/avatar" alt="user-avatar">
-                    </figure>
+                <figure class="image is-64x64" style="margin-left: 10px; margin-top: 10px; margin-bottom: 10px;">
+                    <img class="is-rounded" src="/users/{{id}}/avatar" alt="user-avatar">
+                </figure>
                 <div class="navbar-item">
-                    <a href="/users/me"><h4 class="is-family-sans-serif is-size-3">{{user.name}}</h4></a>
+                    <a href="/users/me">
+                        <h4 class="is-family-sans-serif is-size-3">{{user.name}}</h4>
+                    </a>
                 </div>
             </div>
             <div class="navbar-end">
@@ -24,12 +27,42 @@
             </div>
         </div>
     </nav>
+
+    <div class="column" style="display: flex; justify-content:center; align-items:center">
+        <div class="select">
+            <select>
+                <option><a href="/tasks?completed=false">Not Completed</a></option>
+                <option value="/tasks?completed=true">Completed</option>
+                <option>All tasks</option>
+            </select>
+        </div>
+    </div>
+
     {{#each tasks}}
     <div class="column box container is-max-desktop" style="padding: 20px;">
-        <h1>{{this.description}}</h1>
-        <h1>{{this.completed}}</h1>
+        <form action="/tasks/{{this.idString}}?_method=PATCH" method="POST">
+            <h1 class="is-size-4">{{this.description}}</h1>
+            <input type="text" name="description" style="display: none;" value="{{this.description}}">
+            <input type="text" name="completed" style="display: none;" value="true">
+            <button type="submit" class="button is-success is-outlined">Mark as done</button>
+        </form>
     </div>
     {{/each}}
+
+
+    <div class="column container is-max-desktop" style="padding: 20px;">
+        <form action="/tasks" method="POST" style="display: flex; justify-content:center; align-items:center">
+            <div class="field has-addons">
+                <div class="control">
+                    <input class="input" type="text" placeholder="Task description" name="description">
+                    <input type="text" name="completed" value="false" style="display: none;">
+                </div>
+                <div class="control">
+                    <button class="button is-success" type="submit">Create new task</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

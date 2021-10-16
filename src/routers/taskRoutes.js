@@ -12,7 +12,7 @@ router.post('/tasks', auth, async (req, res) => {
 
     try {
         await task.save()
-        res.status(201).send(task)
+        res.status(201).redirect('/tasks?completed=false')
     } catch (err) {
         res.status(400).send(err)
     }
@@ -50,7 +50,7 @@ router.get('/tasks', auth, async (req, res) => {
             title: 'Tasks',
             user: req.user,
             id: req.user._id.toString(),
-            tasks: req.user.tasks
+            tasks: req.user.tasks,
         }) 
     } catch (err) {
         res.status(500).send(err)
@@ -101,7 +101,7 @@ router.patch('/tasks/:id', auth, async (req, res) => {
         })
         await task.save()
 
-        res.status(201).send(task)
+        res.status(201).redirect('/tasks?completed=false')
 
     } catch (err) {
         res.status(500).send(err)
