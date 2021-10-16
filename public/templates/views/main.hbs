@@ -28,26 +28,24 @@
         </div>
     </nav>
 
-    <div class="column" style="display: flex; justify-content:center; align-items:center">
-        <div class="select">
-            <select>
-                <option><a href="/tasks?completed=false">Not Completed</a></option>
-                <option value="/tasks?completed=true">Completed</option>
-                <option>All tasks</option>
-            </select>
+    {{#if_eq tasks.length 0}}
+        <div class="column container is-max-desktop" style="padding: 20px; text-align:center;">
+            <h1 class="is-size-1">All caught up!</h1>
         </div>
-    </div>
+    {{else}}
+        {{#each tasks}}
+        <div class="column box container is-max-desktop" style="padding: 20px;">
+            <form action="/tasks/{{this.idString}}?_method=DELETE" method="POST">
+                <h1 class="is-size-4">{{this.description}}</h1>
+                <input type="text" name="description" style="display: none;" value="{{this.description}}">
+                <input type="text" name="completed" style="display: none;" value="true">
+                <button type="submit" class="button is-success is-outlined">Mark as done</button>
+            </form>
+        </div>
+        {{/each}}
+    {{/if_eq}}
 
-    {{#each tasks}}
-    <div class="column box container is-max-desktop" style="padding: 20px;">
-        <form action="/tasks/{{this.idString}}?_method=PATCH" method="POST">
-            <h1 class="is-size-4">{{this.description}}</h1>
-            <input type="text" name="description" style="display: none;" value="{{this.description}}">
-            <input type="text" name="completed" style="display: none;" value="true">
-            <button type="submit" class="button is-success is-outlined">Mark as done</button>
-        </form>
-    </div>
-    {{/each}}
+    
 
 
     <div class="column container is-max-desktop" style="padding: 20px;">

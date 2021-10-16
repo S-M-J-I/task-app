@@ -12,7 +12,7 @@ router.post('/tasks', auth, async (req, res) => {
 
     try {
         await task.save()
-        res.status(201).redirect('/tasks?completed=false')
+        res.status(201).redirect('/tasks')
     } catch (err) {
         res.status(400).send(err)
     }
@@ -101,7 +101,7 @@ router.patch('/tasks/:id', auth, async (req, res) => {
         })
         await task.save()
 
-        res.status(201).redirect('/tasks?completed=false')
+        res.status(201).redirect('/tasks')
 
     } catch (err) {
         res.status(500).send(err)
@@ -116,13 +116,15 @@ router.delete('/tasks/:id', auth, async (req, res) => {
         const task = await Task.findOneAndDelete({_id, author: req.user._id})
 
         if(!task) {
-            return res.status(404).send()
+            return res.status(404).redirect('/tasks')
         }
 
-        res.status(200).send(task)
+        res.status(200).redirect('/tasks')
 
     } catch (err) {
-        res.status(500).send()
+        res.status(500).render('error', {
+            err: err.message
+        })
     }
 })
 

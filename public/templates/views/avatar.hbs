@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+{{>headers}}
+<body>
+    <form action="/users/me/avatar" enctype="multipart/form-data" method="POST">
+        <div class="field">
+            <input type="file" id="myFile" name="avatar">
+        </div>
+        <button class="button is-link" value="Submit" type="submit">Choose avatar</button>
+    </form>
+</body>
+</html>
