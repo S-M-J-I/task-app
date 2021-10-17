@@ -45,7 +45,7 @@ router.post('/users/login', async (req, res) => {
             maxAge: 600000,
         })
 
-        res.status(201).redirect('/users/me')
+        res.status(201).redirect('/tasks')
     } catch (err) {
         res.status(400).render('error', {
             title: `Error 400`,
