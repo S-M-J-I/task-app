@@ -34,7 +34,7 @@
         </div>
     {{else}}
         {{#each tasks}}
-        <div class="column box container is-max-desktop" style="padding: 20px;">
+        <div class="column box container is-max-desktop" style="padding: 20px; margin-top: 20px;">
             <form action="/tasks/{{this.idString}}?_method=DELETE" method="POST">
                 <h1 class="is-size-4">{{this.description}}</h1>
                 <input type="text" name="description" style="display: none;" value="{{this.description}}">

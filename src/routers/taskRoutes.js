@@ -14,7 +14,7 @@ router.post('/tasks', auth, async (req, res) => {
         await task.save()
         res.status(201).redirect('/tasks')
     } catch (err) {
-        res.status(400).send(err)
+        res.status(400).redirect('/tasks')
     }
 
 })
