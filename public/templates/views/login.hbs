@@ -4,14 +4,14 @@
 
 <body>
     {{>navbar}}
-    <div class="container is-max-desktop">
+    <div class="container">
         <h2 class="is-size-1 is-family-sans-serif has-text-weight-bold	has-text-centered">Login</h2><br>
         <div class="columns is-centered">
             <div>
                 <form action="/users/login" method="post">
                     <div class="field">
                         <label class="label" for="email">Enter email</label>
-                        <input class="input" type="text" name="email" placeholder="johndoe@gmail.com">
+                        <input class="input" type="text" name="email" placeholder="johndoe@gmail.com" size="33">
                     </div>
                     <div class="field">
                         <label class="label" for="password">Enter password</label>
@@ -19,6 +19,8 @@
                     </div>
                     <button type="submit" class="button is-link is-outlined is-centered is-fullwidth">Login</button>
                 </form>
+                <br>
+                <p class="has-text-centered" style="color: red;">{{err}}</p>
             </div>
         </div>
     </div>

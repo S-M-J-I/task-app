@@ -29,7 +29,7 @@ router.post('/users/signup', async (req, res) => {
 
 router.get('/users/signup', (req, res) => {
     res.render('signup', {
-        title: "Sign-Up"
+        title: "Sign-Up",
     })
 })
 
@@ -47,8 +47,8 @@ router.post('/users/login', async (req, res) => {
 
         res.status(201).redirect('/tasks')
     } catch (err) {
-        res.status(400).render('error', {
-            title: `Error 400`,
+        res.status(400).render('login', {
+            title: `Login`,
             err: err.message
         })
     }
