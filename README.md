@@ -1,6 +1,6 @@
 # Task-App
 
-A simple task app in NodeJS
+A simple task app in NodeJS. A huge thank you to Andrew Mead and his Nodejs course for all the guidelines. [Find it here](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/)
 
 ## Features
 
