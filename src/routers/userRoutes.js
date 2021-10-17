@@ -84,6 +84,8 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = []
         await req.user.save()
+
+        res.clearCookie('Authorization')
     
         res.status(200).redirect('/users/login')
     } catch (err) {
