@@ -2,6 +2,7 @@ const express = require('express')
 const Task = require('../models/Task')
 const auth = require('../middleware/auth')
 const router = new express.Router()
+const mailjet = require('../middleware/mailjet')
 
 router.post('/tasks', auth, async (req, res) => {
 
@@ -117,6 +118,10 @@ router.delete('/tasks/:id', auth, async (req, res) => {
 
         if(!task) {
             return res.status(404).redirect('/tasks')
+        }
+
+        if(!req.user.tasks) {
+            await mailjet.goodWorkEmail(req.user.email, req.user.name)
         }
 
         res.status(200).redirect('/tasks')

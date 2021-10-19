@@ -49,8 +49,32 @@ const sendGoodbyeEmail = async function(email, name) {
     })
 }
 
+const goodWorkEmail = async function(email, name) {
+    await mailjet.post("send", {'version': 'v3.1'}).request({
+      "Messages":[
+          {
+            "From": {
+              "Email": "jishanul.dev@gmail.com",
+              "Name": "S M Jishanul Islam"
+            },
+            "To": [
+              {
+                "Email": email,
+                "Name": name
+              }
+            ],
+            "Subject": "Awesome work! 🔥🔥🔥",
+            "TextPart": "Your last mail",
+            "HTMLPart": `<h3>Dear ${name}</h3><br/>Wow! You're done with all your tasks! Way to go!!!`,
+            "CustomID": "AppGettingStartedTest"
+          }
+      ]
+  })
+}
+
 module.exports = {
     mailjet,
     sendWelcomeEmail,
-    sendGoodbyeEmail
+    sendGoodbyeEmail,
+    goodWorkEmail
 };
