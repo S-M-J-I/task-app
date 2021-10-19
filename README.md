@@ -18,6 +18,7 @@ A simple task app in NodeJS. A huge thank you to Andrew Mead and his Nodejs cour
 - [Json Web Token](https://www.npmjs.com/package/jsonwebtoken)
 - [Validator](https://www.npmjs.com/package/validator)
 - [Sharp](https://www.npmjs.com/package/sharp)
+- [Mailjet](https://www.mailjet.com/)
 - MongoDB
 - MongooseJS
 - Bulma
