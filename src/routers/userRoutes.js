@@ -4,6 +4,7 @@ const router = new express.Router()
 const auth = require('../middleware/auth')
 const multer = require('multer')
 const sharp = require('sharp')
+const mailjet = require('../middleware/mailjet')
 
 // ? create a user resource
 router.post('/users/signup', async (req, res) => {
@@ -16,6 +17,8 @@ router.post('/users/signup', async (req, res) => {
         res.cookie('Authorization', `Bearer ${token}`, {
             maxAge: 600000,
         })
+
+        await mailjet.sendWelcomeEmail(user.email, user.name)
 
         res.status(201).redirect('/users/me')
     } catch (err) {
@@ -152,6 +155,7 @@ router.get('/users/me/delete', auth, async (req, res) => {
 
 router.delete('/users/me', auth, async (req, res) => {
     try {
+        await mailjet.sendGoodbyeEmail(req.user.email, req.user.name)
         await req.user.remove()
         res.status(200).redirect('/users/login')
     } catch (err) {

@@ -5,7 +5,7 @@ const taskRoutes = require('./routers/taskRoutes')
 const path = require('path')
 const hbs = require('hbs')
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 const cookieParser = require('cookie-parser')
 const compression = require('compression')
 const helmet = require('helmet')
@@ -65,5 +65,5 @@ app.use('*', (req, res) => {
 
 // TODO: Remeber to remove the mongo connection path from mongoose header
 app.listen(port , () => {
-    console.log("Server is up!")
+    console.log("Server is up! Port " + port)
 })
