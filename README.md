@@ -22,3 +22,5 @@ A simple task app in NodeJS. A huge thank you to Andrew Mead and his Nodejs cour
 - MongoDB
 - MongooseJS
 - Bulma
+
+Deployed App: https://the-task-app.herokuapp.com/
