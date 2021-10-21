@@ -20,7 +20,7 @@ router.post('/users/signup', async (req, res) => {
 
         await mailjet.sendWelcomeEmail(user.email, user.name)
 
-        res.status(201).redirect('/users/me')
+        res.status(201).redirect('/users/me/avatar')
     } catch (err) {
         res.status(400).render('error', {
             title: `Error 400`,
@@ -122,7 +122,7 @@ router.get('/users/me/update', auth, (req, res) => {
 router.patch('/users/me', auth, async (req, res) => {
 
     const updates = Object.keys(req.body)
-    const allowedUpdatesArray = ["name", "email", "password", "age"]
+    const allowedUpdatesArray = ["name", "email", "password", "age", "avatar"]
     const isValidUpdate = updates.every((updateItem) => {
         return allowedUpdatesArray.includes(updateItem)
     })
@@ -180,13 +180,14 @@ const upload = multer({
     }
 })
 
+router.get('/users/me/avatar', (req, res) => res.render('avatar'));
 
 // add user profile image
 router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
     const buffer = await sharp(req.file.buffer).resize({width: 250, height: 250}).png().toBuffer()
     req.user.avatar = buffer
     await req.user.save()
-    res.status(200).send()
+    res.status(200).redirect('/users/me')
 }, (error, req, res, next) => {
     res.status(400).send({error: error.message})
 })

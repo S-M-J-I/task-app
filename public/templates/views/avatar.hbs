@@ -2,11 +2,14 @@
 <html lang="en">
 {{>headers}}
 <body>
-    <form action="/users/me/avatar" enctype="multipart/form-data" method="POST">
-        <div class="field">
-            <input type="file" id="myFile" name="avatar">
-        </div>
-        <button class="button is-link" value="Submit" type="submit">Choose avatar</button>
-    </form>
+    <div class="columns is-centered" style="margin-top: 15%;">
+        <form action="/users/me/avatar" enctype="multipart/form-data" method="POST" style="align-items: center; justify-content: center; text-align: center;">
+            <h1 class="is-size-3 is-family-sans-serif has-text-centered">Upload your avatar</h1><br>
+            <div class="field">
+                <input type="file" id="avatar" name="avatar">
+            </div>
+            <button class="button is-link" value="Submit" type="submit">Choose avatar</button>
+        </form>
+    </div>
 </body>
 </html>
