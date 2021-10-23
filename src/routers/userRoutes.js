@@ -156,6 +156,7 @@ router.get('/users/me/delete', auth, async (req, res) => {
 router.delete('/users/me', auth, async (req, res) => {
     try {
         await mailjet.sendGoodbyeEmail(req.user.email, req.user.name)
+        res.clearCookie('Authorization')
         await req.user.remove()
         res.status(200).redirect('/users/login')
     } catch (err) {

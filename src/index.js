@@ -40,9 +40,15 @@ hbs.registerHelper('if_eq', function(a, b, opts) {
 
 
 app.get('/', (req, res) => {
-    res.render('home', {
-        title: "Home"
-    })
+
+    if(req.cookies['Authorization']) {
+        res.redirect('/users/me')
+    } else {
+        res.render('home', {
+            title: "Home"
+        })
+    }
+      
 })
 
 app.get('/about', (req, res) => {
