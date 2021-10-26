@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema({
             if (value < 16) {
                 throw new Error("You must be at least 16 years old for this service")
             }
+
+            if (value > 100) {
+                throw new Error("You cannot be that old!")
+            }
         }
     },
     tokens: [{
