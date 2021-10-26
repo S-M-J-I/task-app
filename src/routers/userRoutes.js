@@ -22,9 +22,17 @@ router.post('/users/signup', async (req, res) => {
 
         res.status(201).redirect('/users/me/avatar')
     } catch (err) {
-        res.status(400).render('error', {
-            title: `Error 400`,
-            err: err.message
+        const messageType = err.message.split(": ")[0];
+        const message = err.message.split(": ")[2];
+
+        var composedErrMessage = `${messageType}: ${message}`;
+        if(composedErrMessage === "E11000 duplicate key error collection: email_1 dup key") {
+            composedErrMessage = "Email already exists! Try using another one."
+        }
+
+        res.status(400).render('signup', {
+            title: `Signup`,
+            err: composedErrMessage
         })
     }
 

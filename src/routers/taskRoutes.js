@@ -15,7 +15,14 @@ router.post('/tasks', auth, async (req, res) => {
         await task.save()
         res.status(201).redirect('/tasks')
     } catch (err) {
-        res.status(400).redirect('/tasks')
+
+        res.status(400).render('main', {
+            title: 'Tasks',
+            user: req.user,
+            id: req.user._id.toString(),
+            tasks: req.user.tasks,
+            err: "You need a description!"
+        })
     }
 
 })
