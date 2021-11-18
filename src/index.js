@@ -42,7 +42,7 @@ hbs.registerHelper('if_eq', function(a, b, opts) {
 app.get('/', (req, res) => {
 
     if(req.cookies['Authorization']) {
-        res.redirect('/users/me')
+        res.redirect('/tasks')
     } else {
         res.render('home', {
             title: "Home"
