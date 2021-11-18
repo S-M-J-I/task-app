@@ -29,6 +29,6 @@
     "node-mailjet": "^3.3.4",
     "nodemon": "^2.0.12",
     "sharp": "^0.29.1",
-    "validator": "^13.6.0"
+    "validator": "^13.7.0"
   }
 }

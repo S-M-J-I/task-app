@@ -8,18 +8,24 @@ const mailjet = require('../middleware/mailjet')
 
 // ? create a user resource
 router.post('/users/signup', async (req, res) => {
+    // create a new user object by reading the body 
     const user = new User(req.body)
 
     try {
+        // await the user.save() method
         await user.save()
+        // generate the auth token
         const token = await user.generateAuthToken()
 
+        // set the Authorization cookie
         res.cookie('Authorization', `Bearer ${token}`, {
             maxAge: 600000,
         })
 
+        // await welcome mail
         await mailjet.sendWelcomeEmail(user.email, user.name)
 
+        // redirect to avatar upload
         res.status(201).redirect('/users/me/avatar')
     } catch (err) {
         const messageType = err.message.split(": ")[0];
@@ -48,14 +54,18 @@ router.get('/users/signup', (req, res) => {
 router.post('/users/login', async (req, res) => {
 
     try {
+        // find user by credentials
         const user = await User.findByCredentials(req.body.email, req.body.password)
+        // generate auth token
         const token = await user.generateAuthToken()
 
     
+        // set cookie
         res.cookie('Authorization', `Bearer ${token}`, {
             maxAge: 600000,
         })
 
+        // redirect to tasks
         res.status(201).redirect('/tasks')
     } catch (err) {
         res.status(400).render('login', {
